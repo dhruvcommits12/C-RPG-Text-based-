@@ -78,12 +78,20 @@ void Game::handleFlee() {
 void Game::handleBuy(const std::string& arg) {
     // Remove room check to allow shopping anywhere
     if (arg.empty() || arg == "list") {
-        std::cout << "\n=== Available Weapons ===\n";
+        std::cout << "\n=== Available Items ===\n";
+        // List weapons
+        std::cout << "=== Weapons ===\n";
         for (size_t i = 0; i < shopItems.size(); ++i) {
             std::cout << i+1 << ") " << shopItems[i].name 
                      << " (+" << shopItems[i].damageBonus << " dmg) - " 
                      << shopItems[i].cost << " coins\n";
         }
+        // List heal potions
+        std::cout << "\n=== Potions ===\n";
+        std::cout << (shopItems.size() + 1) << ") Heal Potion"
+                 << " (+" << HealPotion::HEAL_AMOUNT << " HP) - " 
+                 << HealPotion::COST << " coins\n";
+        
         std::cout << "\nYou have " << player->getCoins().get() << " coins."
                  << "\nUse: buy <number> to purchase\n";
         return;
@@ -95,6 +103,12 @@ void Game::handleBuy(const std::string& arg) {
         idx = std::stoi(arg);
     } catch(...) {
         std::cout << "Invalid item number.\n";
+        return;
+    }
+    
+    // Check if buying a heal potion
+    if (idx == shopItems.size() + 1) {
+        player->buyHealPotion();
         return;
     }
 
@@ -124,6 +138,9 @@ void Game::processCommand(const std::string& input) {
     else if (verb == "status") handleStatus();
     else if (verb == "flee") handleFlee();
     else if (verb == "buy") handleBuy(noun);
+    else if (verb == "heal") {
+        player->useHealPotion();
+    }
     else if (verb == "equip") {
 
          if (noun.empty()) {
@@ -139,7 +156,7 @@ void Game::processCommand(const std::string& input) {
     }
 
     else if (verb == "quit" || verb == "exit") isRunning = false;
-    else std::cout << "Unknown command. Try: move [direction], attack, flee, buy, equip, status, quit.\n";
+    else std::cout << "Unknown command. Try: move [direction], attack, flee, buy, equip, heal, status, quit.\n";
 }
 
 void Game::handleAttack() {
