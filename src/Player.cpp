@@ -15,7 +15,7 @@ void Player::gainXP(int amount) {
     currentXP += amount;
     std::cout << name << " gained " << amount << " XP. ";
     // Simple level-up logic
-    if (currentXP >= level * 50) {
+    if (currentXP >= level * 80) {
         level++;
         strength += 5;
         health = health*0.8 + (level * 20); // Heals and increases max health

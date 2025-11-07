@@ -13,7 +13,7 @@ private:
     Coins coins;
 public:
     Player(const std::string& n)
-        : Entity(n, 100, 15), level(1), currentXP(0), inventory(), coins(70 /*start coins*/) {} //Constructor passing for both the current and base class
+        : Entity(n, 100, 15), level(1), currentXP(0), inventory(), coins(40 /*start coins*/) {} //Constructor passing for both the current and base class
 
     void attack(Entity* target) override; // These are from my Entity class functions
     void takeDamage(int damage) override; //  Same here
