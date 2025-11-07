@@ -10,8 +10,8 @@
 void Game::setupMap() {
 
     shopItems.push_back(Weapon("Iron Sword", 5, 50));
-    shopItems.push_back(Weapon("Steel Axe", 10, 100));
-    shopItems.push_back(Weapon("Magic Staff", 15, 200));
+    shopItems.push_back(Weapon("Steel Axe", 10, 110));
+    shopItems.push_back(Weapon("Magic Staff", 15, 160));
     Room* r1 = new Room("You entered the arena of Monsters.. Beware!.. You may check the shop");
     r1->addExit("north", 2);
     worldMap[1] = r1;
@@ -36,7 +36,7 @@ void Game::setupMap() {
     Room* r4 = new Room("This is a dark cave. But remember what's hiding in the dark");
     r4->addExit("west", 2);
     r4->addExit("east", 5);
-    r4->addMonster(new Monster("Mighty Mindr", 50,20 , 22));
+    r4->addMonster(new Monster("Mighty Miner", 50,20 , 22));
     worldMap[4] = r4;
     worldMap[4]->addMonster(new Monster("Bat Swarm", 21, 6, 8));
 

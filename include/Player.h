@@ -40,9 +40,18 @@ public:
         if (inventory.useHealPotion()) {
             // Since Entity class has base health of 100, we'll use that as max
             const int MAX_HEALTH = 100;
-            health = (health + HealPotion::HEAL_AMOUNT > MAX_HEALTH) ? MAX_HEALTH : health + HealPotion::HEAL_AMOUNT;
+            health = health + HealPotion::HEAL_AMOUNT;
+
+            if(health > MAX_HEALTH){
+
+                health = MAX_HEALTH;
+                std::cout << name << " used a heal potion... but health was already full! The potion was wasted.\n";
+            return true;  // still return true because the potion was consumed
+            }
+            else{
             std::cout << name << " used a heal potion and recovered " << HealPotion::HEAL_AMOUNT << " HP!\n";
             return true;
+            }
         }
         return false;
     }
