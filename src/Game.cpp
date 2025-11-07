@@ -22,33 +22,33 @@ void Game::setupMap() {
     r2->addExit("south", 1);
     r2->addExit("east", 4);
     r2->addExit("west", 6);
-    r2->addMonster(new Monster("Goblin", 30, 8, 10));
+    r2->addMonster(new Monster("Goblin", 30, 8, 12));
     worldMap[2] = r2;
-    worldMap[2]->addMonster(new Monster("Goblin Giant", 35, 9, 12, 2));
+    worldMap[2]->addMonster(new Monster("Goblin Giant", 35, 9, 15, 2));
 
 
     Room* r3 = new Room("You have entered the realm of wizards.. beware of their spells");
     r3->addExit("south", 2);
     r3->addExit("east", 4);
-    r3->addMonster(new Monster("Evil Wizard", 100, 20, 50));
+    r3->addMonster(new Monster("Evil Wizard", 100, 20, 60));
     worldMap[3] = r3;
 
     Room* r4 = new Room("This is a dark cave. But remember what's hiding in the dark");
     r4->addExit("west", 2);
     r4->addExit("east", 5);
-    r4->addMonster(new Monster("Mighty Miner", 50,20 , 22));
+    r4->addMonster(new Monster("Mighty Miner", 50,20 ,25));
     worldMap[4] = r4;
-    worldMap[4]->addMonster(new Monster("Bat Swarm", 21, 6, 8));
+    worldMap[4]->addMonster(new Monster("Bat Swarm", 21, 6, 12));
 
     Room* r5 = new Room("These are old ruins covered in plants. Beware.. the legend goes that here the undead lives");
     r5->addExit("west", 4);
-    r5->addMonster(new Monster("Skeleton Warrior", 40, 10, 15 ,2));
+    r5->addMonster(new Monster("Skeleton Warrior", 40, 15, 20 ,2));
     worldMap[5] = r5;
 
     Room* r6 = new Room("This is the realm of souls.. don't wait for long it would piss the spirit empress of");
     r6->addExit("east", 2);
     r6->addExit("north", 7);
-    r6->addMonster(new Monster("Spirit Emperess", 20, 22 ,20));
+    r6->addMonster(new Monster("Spirit Emperess", 20, 22 ,30));
     worldMap[6] = r6;
 
     Room* r7 = new Room("It's the MONK.. the evil man who created these monsters.. you sure wanna stay here for long?.. he might turn you into one too");
@@ -373,7 +373,7 @@ void showAndSaveLeaderboardForCurrentPlayer(Player* p) {
 
 void Game::startLoop() {
     std::cout << "Welcome to the C++ based RPG.. QUEST OF THE ETERNAL HERO" << std::endl;
-    std::cout << "Commands: move [direction], attack, flee, status, quit, buy, equip" << std::endl;
+    std::cout << "Commands: move [direction], attack, flee, status, quit, buy, equip, heal" << std::endl;
 
     while (isRunning && player->isAlive()) {
         if (worldMap.count(currentRoomID))
